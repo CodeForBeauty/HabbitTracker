@@ -42,6 +42,10 @@ def main():
     data[habbit] += change
     labels[idx].config(text = f"{habbit}: {data[habbit]}")
   
+  def resetData(habbit, idx):
+    data[habbit] = 0
+    labels[idx].config(text = f"{habbit}: {0}")
+  
   def deleteHabbit(habbit, idx):
     data.pop(habbit, None)
     containers[idx].destroy()
@@ -60,9 +64,13 @@ def main():
     ttk.Button(container, text = "-", 
                command = lambda i=i, habbit=habbit : changeData(habbit, i, -1)
                ).grid(row = 0, column = 2)
+    
+    ttk.Button(container, text = "reset", 
+               command = lambda i=i, habbit=habbit : resetData(habbit, i)
+               ).grid(row = 0, column = 3)
     ttk.Button(container, text = "delete", 
                command = lambda i=i, habbit=habbit : deleteHabbit(habbit, i)
-               ).grid(row = 0, column = 3)
+               ).grid(row = 0, column = 4)
     
     container.grid(row = i)
   
